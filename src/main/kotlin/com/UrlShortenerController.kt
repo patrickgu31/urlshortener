@@ -15,7 +15,6 @@ import java.net.URI
 @Controller("/urlshortener")
 class UrlShortenerController (
     @Inject private val urlShortenerService: UrlShortenerService,
-    @Value("\${url.shortener.prefix}") private val prefix: String
 ){
     companion object{
         private val logger: Logger = LoggerFactory.getLogger(UrlShortenerController::class.java)
@@ -34,6 +33,6 @@ class UrlShortenerController (
         }
         val urlToEncode = URI.create(url)
         val response = urlShortenerService.shortenUrl(urlToEncode)
-        return HttpResponse.ok(prefix)
+        return HttpResponse.ok(response)
     }
 }
